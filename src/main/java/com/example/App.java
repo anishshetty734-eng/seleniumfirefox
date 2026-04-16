@@ -15,8 +15,14 @@ public class App {
 
     public static void main(String[] args) throws InterruptedException {
 
+        // ✅ Headless Firefox for Jenkins
         FirefoxOptions options = new FirefoxOptions();
+        options.addArguments("--headless");  // IMPORTANT
+        options.addArguments("--no-sandbox");
+
+        // keep binary if needed (optional depending on system)
         options.setBinary("/snap/firefox/current/usr/lib/firefox/firefox");
+
         WebDriver driver = new FirefoxDriver(options);
         driver.manage().window().setSize(new org.openqa.selenium.Dimension(1920, 1080));
 
@@ -62,6 +68,6 @@ public class App {
         System.out.println("Practice Test Automation login successful");
 
         Thread.sleep(5000);
-        driver.quit();
+        driver.quit(); // ✅ important
     }
 }
